@@ -476,8 +476,13 @@ def api_generate_image(data: ImageGenRequest):
 def health():
     return {
         "status": "ok",
-        "message": "Backend is running"
+        "gemini": gemini_client is not None,
+        "groq":   groq_client   is not None,
+        "hf":     bool(HF_API_KEY),
+        "smtp":   bool(SMTP_EMAIL and SMTP_APP_PASSWORD),
+        "sheet":  bool(GOOGLE_SCRIPT_URL),
     }
+
 
 # ══════════════════════════════════════════════════════════
 #  SERVE FRONTEND
@@ -497,8 +502,6 @@ def serve_static(file_path: str):
     if p.exists() and p.is_file():
         return FileResponse(str(p))
     return JSONResponse({"error": f"Not found: {file_path}"}, status_code=404)
-
-
 
 
 if __name__ == "__main__":
