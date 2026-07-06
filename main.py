@@ -21,7 +21,7 @@ try:
 except ImportError:
     pass
 
-# CONFIG #RAM KUMAR ji
+# CONFIG #RAM KUMAR ji ji
 GEMINI_API_KEY    = os.getenv("GEMINI_API_KEY", "")
 GROQ_API_KEY      = os.getenv("GROQ_API_KEY", "")
 HF_API_KEY        = os.getenv("HF_API_KEY", "")
@@ -476,13 +476,8 @@ def api_generate_image(data: ImageGenRequest):
 def health():
     return {
         "status": "ok",
-        "gemini": gemini_client is not None,
-        "groq":   groq_client   is not None,
-        "hf":     bool(HF_API_KEY),
-        "smtp":   bool(SMTP_EMAIL and SMTP_APP_PASSWORD),
-        "sheet":  bool(GOOGLE_SCRIPT_URL),
+        "message": "Backend is running"
     }
-
 
 # ══════════════════════════════════════════════════════════
 #  SERVE FRONTEND
@@ -503,12 +498,7 @@ def serve_static(file_path: str):
         return FileResponse(str(p))
     return JSONResponse({"error": f"Not found: {file_path}"}, status_code=404)
 
-@app.get("/health")
-def health():
-    return {
-        "status": "ok",
-        "message": "Backend is running"
-    }
+
 
 
 if __name__ == "__main__":
