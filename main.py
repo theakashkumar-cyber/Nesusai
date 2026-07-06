@@ -21,7 +21,7 @@ try:
 except ImportError:
     pass
 
-# CONFIG #RAM KUMAR
+# CONFIG #RAM KUMAR ji
 GEMINI_API_KEY    = os.getenv("GEMINI_API_KEY", "")
 GROQ_API_KEY      = os.getenv("GROQ_API_KEY", "")
 HF_API_KEY        = os.getenv("HF_API_KEY", "")
@@ -502,6 +502,13 @@ def serve_static(file_path: str):
     if p.exists() and p.is_file():
         return FileResponse(str(p))
     return JSONResponse({"error": f"Not found: {file_path}"}, status_code=404)
+
+@app.get("/health")
+def health():
+    return {
+        "status": "ok",
+        "message": "Backend is running"
+    }
 
 
 if __name__ == "__main__":
