@@ -106,8 +106,7 @@ app.add_middleware(
 # ── Model map ──────────────────────────────────────────────
 # FIX: gemini-1.5-flash was missing — it's the frontend's default model
 MODEL_MAP = {
-    "gemini-2.5-flash":     {"provider": "gemini", "model": "gemini-2.5-flash"},
-    "gemini-1.5-flash":     {"provider": "gemini", "model": "gemini-1.5-flash"},   # ← ADDED
+    "gemini-2.5-flash":     {"provider": "gemini", "model": "gemini-2.5-flash"},  # ← ADDED
     "llama-3.1-8b-instant": {"provider": "groq",   "model": "llama-3.1-8b-instant"},
 }
 DEFAULT_MODEL = "gemini-2.5-flash"
